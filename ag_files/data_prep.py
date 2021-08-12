@@ -35,7 +35,7 @@ print(X.shape, Y.shape)
 
 
 df = pd.read_csv('/home/timur/Documents/Projects/sound_classification/ag_files/esc50.csv')
-classes = df[['target', 'category']].values.tolist()
+classes = df[['filename', 'target']].values.tolist()
 classes = set(['{} {}'.format(c[0], c[1]) for c in classes])
 classes = np.array([c.split(' ') for c in classes])
 classes = {k: v for k, v in classes}
