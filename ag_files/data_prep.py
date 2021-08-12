@@ -1,13 +1,13 @@
-from kag_files.utils import ESC50
+from utils import ESC50
 import pandas as pd
 import numpy as np
 
 train_splits = [1,2,3,4]
 test_split = 5
 
-shared_params = {'csv_path': 'kag_files/esc50.csv',
-                 'wav_dir': 'dataset/audio/audio',
-                 'dest_dir': 'dataset/audio/audio/16000',
+shared_params = {'csv_path': '/home/timur/Documents/Projects/sound_classification/ag_files/esc50.csv',
+                 'wav_dir': '/home/timur/Documents/Projects/sound_classification/dataset/audio/audio',
+                 'dest_dir': '/home/timur/Documents/Projects/sound_classification/dataset/audio/audio/16000',
                  'audio_rate': 16000,
                  'only_ESC10': True,
                  'pad': 0,
@@ -34,10 +34,10 @@ print(X.shape, Y.shape)
 
 
 
-df = pd.read_csv('kag_files/esc50.csv')
+df = pd.read_csv('/home/timur/Documents/Projects/sound_classification/ag_files/esc50.csv')
 classes = df[['target', 'category']].values.tolist()
 classes = set(['{} {}'.format(c[0], c[1]) for c in classes])
 classes = np.array([c.split(' ') for c in classes])
 classes = {k: v for k, v in classes}
-# print(classes.items())
+print(classes)
 
