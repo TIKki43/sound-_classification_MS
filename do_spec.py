@@ -87,7 +87,7 @@ for file in Data_dir[i:i+2000]:
     filename,name = file,file.split('/')[-1].split('.')[0]
     path = r'/home/timur/Documents/Projects/sound_classification/img.jpg' + name + '.jpg'
     create_spectrogram(filename, path)
-print(gc.collect())
+#print(gc.collect())
 
 path_to_data = '/home/timur/Documents/Projects/sound_classification/dataset/audio/audio/16000/'
 
