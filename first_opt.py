@@ -4,6 +4,7 @@ import sys
 sys.path.append('../')
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 sys.path.insert(1, '/home/timur/Documents/Projects/sound_classification/ag_files')
 from ag_files.data_prep import classes
@@ -94,10 +95,15 @@ early_stop = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=1
 
 batch = 32
 EPOCHS = 100
-history = model.fit(x=aug.flow(X_train, y_train, batch_size = batch),
+hist = model.fit(x=aug.flow(X_train, y_train, batch_size = batch),
                     steps_per_epoch=len(X_train)//batch,
                     epochs=EPOCHS,
                     verbose=1,
                     validation_data=(X_val, y_val), callbacks=[early_stop])
 
 model.save('first.h5')
+
+plt.plot(model.history["val_accuracy"])
+plt.xlabel("Num of Epochs")
+plt.ylabel("Accuracy")
+plt.show()

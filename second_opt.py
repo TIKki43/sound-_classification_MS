@@ -4,9 +4,8 @@ from keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D, BatchNormalization
 from keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img
 sys.path.append('../')
-import numpy as np
-import pandas as pd
 import shutil
+import matplotlib.pyplot as plt
 
 sys.path.insert(1, '/home/timur/Documents/Projects/sound_classification/ag_files')
 from ag_files.data_prep import classes
@@ -80,6 +79,14 @@ from tensorflow.keras.callbacks import EarlyStopping
 early_stop = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=10)
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(train_gen, epochs=100, validation_data=test_gen, callbacks=[early_stop])
+hist = model.fit(train_gen, epochs=50, validation_data=test_gen)
 
 model.save('second.h5')
+
+plt.plot(model.history["val_accuracy"])
+plt.xlabel("Num of Epochs")
+plt.ylabel("Accuracy")
+plt.show()
+
+loss, acc = model.evaluate(test_gen)
+print(loss, acc)
