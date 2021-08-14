@@ -1,4 +1,8 @@
 dataset
 data_img
 .idea
+spl_dt
+im_data
 .gitignore
+first.h5
+second.h5
